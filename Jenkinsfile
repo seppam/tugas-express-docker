@@ -10,22 +10,15 @@ pipeline {
 
     stages {
 
-        stage('Checkout Code') {
-            steps {
-                git 'https://github.com/seppam/tugas-express-docker.git'
-            }
-        }
-
         stage('Create .env') {
             steps {
                 sh '''
                 rm -f .env
-
                 echo "PORT=$PORT" > .env
-                chmod 600 .env
                 echo "MONGO_URI=$MONGO_URI" >> .env
                 echo "JWT_SECRET=$JWT_SECRET" >> .env
                 echo "JWT_EXPIRES_IN=$JWT_EXPIRES_IN" >> .env
+                chmod 600 .env
                 '''
             }
         }
